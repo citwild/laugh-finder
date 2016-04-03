@@ -1,1 +1,9 @@
+# IntelliJ files
 *.iml
+
+# Mac files
+.DS_Store
+
+# Compiled files
+bin
+__pycache__

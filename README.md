@@ -20,7 +20,7 @@ A machine learning program for human laughter detection.
 2. In the GUI, click "Browse" next to "File with laughter audio file names"
 3. Select the file containing a series of paths to laughter training files
 4. Click "Browse" next to "File with non-laughter audio file names"
-5. Select the file containing a series of paths to non-laughter training files 
+5. Select the file containing a series of paths to non-laughter training files
 6. Click "Prepare" to generate a `weka.arff` file within the same directory as *main.py*
 
 #### Using WEKA
