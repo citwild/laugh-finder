@@ -25,7 +25,6 @@ def createWekaFile(features, labels, file_name):
 
 def generateWekaHeader():
 
-
     header = """% Title: MFCC, Energy, Zero Crossing rate Features
     %
     % Creator: Shalini Ramachandra

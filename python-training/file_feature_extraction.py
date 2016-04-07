@@ -11,6 +11,7 @@ eps = 0.00000001
 Extracts the audio features for the given audio file
 """
 
+
 def file_feature_extraction(audioFile):
     # read in digital signal from audio file
     audioInfo = wavfile.read(audioFile)
@@ -76,6 +77,7 @@ def file_feature_extraction(audioFile):
     Features[19] = stSpectralRollOff(X,0.90,fs)
     return Features
 
+
 # Spectral Centroid and Spread
 def stSpectralCentroidAndSpread(X,fs):
     """Computes spectral centroid of frame (given abs(FFT))"""
@@ -94,10 +96,11 @@ def stSpectralCentroidAndSpread(X,fs):
     S = numpy.sqrt(numpy.sum(((ind - C) ** 2) * Xt) / DEN)
 
     # Normalize:
-    C = C / (fs / 2.0)
-    S = S / (fs / 2.0)
+    C /= (fs / 2.0)
+    S /= (fs / 2.0)
 
     return (C, S)
+
 
 #Spectral Entropy
 def stSpectralEntropy(X, numOfShortBlocks=10):
@@ -114,6 +117,7 @@ def stSpectralEntropy(X, numOfShortBlocks=10):
     En = -numpy.sum(s*numpy.log2(s + eps))                                    # compute spectral entropy
 
     return En
+
 
 # Spectral Flux
 def stSpectralFlux(X, Xprev):
