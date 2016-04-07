@@ -5,8 +5,9 @@ from MatchTimeConvertor import MatchConverter
 from Weka_MatchGenerator_Local import LableGenerator
 from file_feature_extraction import file_feature_extraction
 
-def createWekaFile(features, labels, fileName):
-    with open(fileName, 'w+') as wekaFile:
+
+def createWekaFile(features, labels, file_name):
+    with open(file_name, 'w+') as wekaFile:
         wekaFile.write(generateWekaHeader() + "\n\n")
         positive = 0
         negative = 0
@@ -20,6 +21,7 @@ def createWekaFile(features, labels, fileName):
     print("-ves: ", negative)
     print("Filtered: ", filtered)
     print("+ves Filtered: ", positives_filtered)
+
 
 def generateWekaHeader():
 
@@ -55,28 +57,29 @@ def generateWekaHeader():
 
     @data"""
 
-    return header;
+    return header
 
-def showTestModel(laughterFileName, nonLaughterFileName):
-    print(laughterFileName)
-    print(nonLaughterFileName)
 
-    laughterFile = open(laughterFileName, 'r')
-    nonLaughterFile = open(nonLaughterFileName, 'r')
+def showTestModel(laughter_file_name, non_laughter_file_name):
+    print(laughter_file_name)
+    print(non_laughter_file_name)
+
+    laughter_file = open(laughter_file_name, 'r')
+    non_laughter_file = open(non_laughter_file_name, 'r')
     labels = []
-    featureArray = []
-    for line in laughterFile:
+    feature_array = []
+    for line in laughter_file:
         line = line.strip("\n")
-        featureArray.append(file_feature_extraction(line))
+        feature_array.append(file_feature_extraction(line))
         labels.append('YES')
 
-    for line in nonLaughterFile:
+    for line in non_laughter_file:
         line = line.strip("\n")
-        featureArray.append(file_feature_extraction(line))
+        feature_array.append(file_feature_extraction(line))
         labels.append('NO')
 
-    #print(labels)
-    createWekaFile(featureArray, labels, "wekaFile.arff")
+    # print(labels)
+    createWekaFile(feature_array, labels, "wekaFile.arff")
     my_view.showTestModelScreen()
 
 
