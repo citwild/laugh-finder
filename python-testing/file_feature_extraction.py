@@ -1,5 +1,5 @@
 from scipy.io.wavfile import *
-from numpy import *
+import numpy
 
 import feature_mfccs_init
 import feature_mfccs
@@ -28,18 +28,18 @@ def file_feature_extraction(file, win=0.032, step=0.016, amplitudeFilter=False, 
 
     # Converting stereo signal to MONO signal
     if (len(signal[0]) > 1):
-        signal = float_(sum(signal, axis=1)) / 2
+        signal = numpy.float_(numpy.sum(signal, axis=1)) / 2
 
     # short-term feature extraction
     numberOfSamples = len(signal)
-    duration = float_(numberOfSamples) / fs  # in seconds
+    duration = numpy.float_(numberOfSamples) / fs  # in seconds
 
     # convert window length and step from seconds to samples
-    windowLength = int(round(win * fs))
-    stepInSamples = int(round(step * fs))
+    windowLength = numpy.int(numpy.round(win * fs))
+    stepInSamples = numpy.int(numpy.round(step * fs))
 
     # compute the total number of frames
-    numOfFrames = int(floor((numberOfSamples - windowLength) / stepInSamples) + 1)
+    numOfFrames = numpy.int(numpy.floor((numberOfSamples - windowLength) / stepInSamples) + 1)
 
     # number of features to be computed:
     # MFCCs = 13 + Energy = 1 + ZeroCrossingRate = 1 + EnergyEntropy = 1 + Spectral Centroid and Spread = 2 + Spectral Entropy = 1 + Spectral Rolloff = 1
@@ -47,14 +47,14 @@ def file_feature_extraction(file, win=0.032, step=0.016, amplitudeFilter=False, 
     numbOfFeatures = 21
     # print numOfFrames, numbOfFeatures
     # import pdb; pdb.set_trace()
-    Features = zeros((numOfFrames, numbOfFeatures))
+    Features = numpy.zeros((numOfFrames, numbOfFeatures))
 
     # Frequency-domain audio features
     # MFCC
-    Ham = hamming(windowLength)
+    Ham = numpy.hamming(windowLength)
     mfccParams = feature_mfccs_init.feature_mfccs_init(windowLength, fs)
 
-    Win = int(windowLength)
+    Win = numpy.int(windowLength)
     nFFT = Win / 2
 
     curPos = 1
@@ -79,18 +79,18 @@ def file_feature_extraction(file, win=0.032, step=0.016, amplitudeFilter=False, 
         frame = frame * Ham
         frameFFT = getDFT.getDFT(frame, fs)
 
-        X = abs(fft.fft(frame))
+        X = numpy.abs(numpy.fft.fft(frame))
         X = X[0:nFFT]                                    # normalize fft
         X = X / len(X)
 
         if i == 0:
             Xprev = X.copy()
 
-        if sum(abs(frame)) > spacing(1):
+        if numpy.sum(numpy.abs(frame)) > numpy.spacing(1):
             MFCCs = feature_mfccs.feature_mfccs(frameFFT, mfccParams)
             Features[i][0:13] = MFCCs
         else:
-            Features[:, i] = zeros(numbOfFeatures, 1)
+            Features[:, i] = numpy.zeros(numbOfFeatures, 1)
         Features[i][13] = stEnergy(frame)
         Features[i][14] = stZCR(frame)
         Features[i][15] = stEnergyEntropy(frame)
@@ -143,7 +143,7 @@ def stSpectralEntropy(X, numOfShortBlocks=10):
     L = len(X)                         # number of frame samples
     Eol = numpy.sum(X ** 2)            # total spectral energy
 
-    subWinLength = int(numpy.floor(L / numOfShortBlocks))   # length of sub-frame
+    subWinLength = numpy.int(numpy.floor(L / numOfShortBlocks))   # length of sub-frame
     if L != subWinLength * numOfShortBlocks:
         X = X[0:subWinLength * numOfShortBlocks]
 
@@ -178,7 +178,7 @@ def stSpectralRollOff(X, c, fs):
     CumSum = numpy.cumsum(X ** 2) + eps
     [a, ] = numpy.nonzero(CumSum > Thres)
     if len(a) > 0:
-        mC = numpy.float64(a[0]) / (float(fftLength))
+        mC = numpy.float64(a[0]) / (numpy.float(fftLength))
     else:
         mC = 0.0
     return (mC)
@@ -201,7 +201,7 @@ def stEnergyEntropy(frame, numOfShortBlocks=10):
     """Computes entropy of energy"""
     Eol = numpy.sum(frame ** 2)    # total frame energy
     L = len(frame)
-    subWinLength = int(numpy.floor(L / numOfShortBlocks))
+    subWinLength = numpy.int(numpy.floor(L / numOfShortBlocks))
     if L != subWinLength * numOfShortBlocks:
             frame = frame[0:subWinLength * numOfShortBlocks]
     # subWindows is of size [numOfShortBlocks x L]
@@ -213,4 +213,3 @@ def stEnergyEntropy(frame, numOfShortBlocks=10):
     # Compute entropy of the normalized sub-frame energies:
     Entropy = -numpy.sum(s * numpy.log2(s + eps))
     return Entropy
-
