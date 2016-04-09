@@ -50,6 +50,8 @@ A machine learning program for human laughter detection.
 8. The re-trained model will be placed in the same directory as the old model (see **Constants.java**)
 
 ## Useful Commands
+
+### ffmpeg
 If you are using a Macintosh, you can install `ffmpeg` using [Homebrew](http://brew.sh/)
 - `brew install ffmpeg`
 
