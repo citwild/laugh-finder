@@ -5,6 +5,7 @@ A machine learning program for human laughter detection.
 1. Install Python 3.4.3 or later
 2. Install Python's [SciPy package](http://www.scipy.org/) and related [NumPy package](http://www.numpy.org/)
 3. Install [WEKA](http://www.cs.waikato.ac.nz/ml/weka/)
+4. Install NodeJS (work automated model generation)
 
 ## Using the Programs
 
@@ -28,6 +29,9 @@ A machine learning program for human laughter detection.
 6. To use K-nearest neigbors algorithm: under "lazy", select "IBk"
 7. Press "Start"
 8. After the classification is finished, right-click the output in "Result List" and click "Save Model"
+
+##### In Progress: WEKA automated
+Within `weka-automation/` directory, run `npm install`.
 
 ### Testing
 
