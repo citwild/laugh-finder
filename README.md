@@ -4,6 +4,8 @@ A machine learning program for human laughter detection.
 ## Setup
 1. Install Python 3.4.3 or later
 2. Install Python's [SciPy package](http://www.scipy.org/) and related [NumPy package](http://www.numpy.org/)
+  - If using Windows, access NumPy and SciPy wheels [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
+    - Note your version of Python and architecture (i.e., 32-bit v. 64-bit)
 3. Install [WEKA](http://www.cs.waikato.ac.nz/ml/weka/)
 4. Install NodeJS (work automated model generation)
 
@@ -12,12 +14,12 @@ A machine learning program for human laughter detection.
 ### Training
 
 #### Generate .arff File for WEKA
-1. Run *main.py* under the training folder
+1. Run **main.py** under the *python-training* folder
 2. In the GUI, click "Browse" next to "File with laughter audio file names"
 3. Select the file containing a series of paths to laughter training files
 4. Click "Browse" next to "File with non-laughter audio file names"
 5. Select the file containing a series of paths to non-laughter training files
-6. Click "Prepare" to generate a *wekaFile.arff* file within the same directory as *main.py*
+6. Click "Prepare" to generate a **wekaFile.arff** file within the same directory as **main.py**
 
 #### Using WEKA
 1. Run WEKA using the following command:
@@ -34,21 +36,26 @@ A machine learning program for human laughter detection.
 Within `weka-automation/` directory, run `npm install`.
 
 ### Testing
+1. Run **main.py** under the *python-testing* folder
+  - Include the following params:
+    - `--phase 0`; for testing algorithm
+    - `--audio /path/to/audio.wav`; the audio file you want to examine
+      - **.wav** files only, not 24 bit depth (limitation of SciPy)
+    - `--arff /path/to/arff/result.arff`; the result **.arff** file from training
 
-#### Python
-To be explained
-
-#### Java
-1. Change file paths in *Constants.java* accordingly, relative to the values of your machine
-2. Compile and run the *WavReader* main class (include the *weka.jar* to your classpath)
+### Re-Training
+1. Change file paths in **Constants.java** accordingly, relative to the values of your machine
+2. Compile and run the *WavReader* main class (include the **weka.jar** to your classpath)
 3. Run the main Java file
 4. In the GUI, select the audio file containig the laughter segments to be identified
 5. Click the "Get Laughter Segments" button
 6. You will be presented with a series of snippets identified as laughter, select each one that is correctly identified
 7. Click the retrain model process
-8. The re-trained model will be placed in the same directory as the old model (see *Constants.java*)
+8. The re-trained model will be placed in the same directory as the old model (see **Constants.java**)
 
 ## Useful Commands
+
+### ffmpeg
 If you are using a Macintosh, you can install `ffmpeg` using [Homebrew](http://brew.sh/)
 - `brew install ffmpeg`
 
@@ -65,3 +72,7 @@ Using that application, you can do the following:
 
 - Convert .mp4 to .wav
   - `ffmpeg -i sourcefile.mp4 destination.wav`
+
+## Reading
+- [WEKA .arff filetype](https://weka.wikispaces.com/ARFF+%28developer+version%29)
+- [ffmpeg documentation](https://www.ffmpeg.org/ffmpeg.html)

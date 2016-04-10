@@ -1,5 +1,6 @@
 # IntelliJ files
 *.iml
+*.idea
 
 # Mac files
 .DS_Store
@@ -7,3 +8,8 @@
 # Compiled files
 bin
 __pycache__
+
+# WEKA files
+*.model
+*.arff
+
