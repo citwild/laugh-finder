@@ -13,3 +13,8 @@ __pycache__
 *.model
 *.arff
 
+# Sensitive data (media files)
+*.wav
+
+# Node/NPM files
+node_modules/

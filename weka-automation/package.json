@@ -1,0 +1,27 @@
+{
+  "name": "weka-automation",
+  "version": "0.0.1",
+  "description": "For use in wide-field-ethnography/laugh-finder. Scripts used to automate WEKA use and generation of a .model file for classifying laugh data.",
+  "main": "generateArff.js",
+  "dependencies": {
+    "shelljs": "^0.6.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wide-field-ethnography/laugh-finder/tree/develop/weka-automation"
+  },
+  "keywords": [
+    "WEKA",
+    "automation",
+    "script",
+    "bash"
+  ],
+  "author": "Miles Dowe",
+  "license": "ISC"
+}
