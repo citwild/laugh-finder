@@ -6,6 +6,7 @@ A machine learning program for human laughter detection.
 2. Install Python's [SciPy package](http://www.scipy.org/) and related [NumPy package](http://www.numpy.org/)
   - If using Windows, access NumPy and SciPy wheels [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
     - Note your version of Python and architecture (i.e., 32-bit v. 64-bit)
+    - Python versions 3.6 and higher do not currently have NumPy or SciPy wheels available
 3. Install [WEKA](http://www.cs.waikato.ac.nz/ml/weka/)
 
 ## Using the Programs
