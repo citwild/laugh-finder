@@ -87,5 +87,3 @@ my_view = View(800, 500)
 my_view.showPrepareScreen(showTestModel)
 
 my_view.start()
-
-
