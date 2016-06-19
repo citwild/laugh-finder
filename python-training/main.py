@@ -79,7 +79,9 @@ def showTestModel(laughter_file_name, non_laughter_file_name):
 
     # print(labels)
     createWekaFile(feature_array, labels, "wekaFile.arff")
-    my_view.showTestModelScreen()
+
+    # This might be useless, screen doesn't do anything
+    # my_view.showTestModelScreen()
 
 
 my_view = View(800, 500)
