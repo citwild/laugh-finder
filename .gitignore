@@ -8,8 +8,12 @@
 # Compiled files
 bin
 __pycache__
+*.pyc
 
 # WEKA files
 *.model
 *.arff
+weka*
 
+# Data
+laugh-files
