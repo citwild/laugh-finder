@@ -86,4 +86,4 @@ parser.add_argument('output_location', type=str, help='the path where the result
 
 args = parser.parse_args()
 
-showTestModel(args.laughter_files, args.non_laughter_files);
+showTestModel(args.laughter_files, args.non_laughter_files, args.output_location)
