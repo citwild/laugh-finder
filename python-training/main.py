@@ -57,7 +57,7 @@ def generateWekaHeader():
     return header
 
 
-def showTestModel(laughter_file_name, non_laughter_file_name, output_location):
+def showTestModel(laughter_file_name, non_laughter_file_name, output_filepath):
     print(laughter_file_name)
     print(non_laughter_file_name)
 
@@ -76,14 +76,28 @@ def showTestModel(laughter_file_name, non_laughter_file_name, output_location):
         labels.append('NO')
 
     # print(labels)
-    createWekaFile(feature_array, labels, output_location + "wekaFile.arff")
+    createWekaFile(feature_array, labels, output_filepath)
 
 
-parser = argparse.ArgumentParser(description='Train the model using supervised data.')
-parser.add_argument('laughter_files', type=str, help='a text file with file paths to laughter sound examples')
-parser.add_argument('non_laughter_files', type=str, help='a text file with file paths to non-laughter sound examples')
-parser.add_argument('output_location', type=str, help='the path where the resulting arff file is to be placed')
+parser = argparse.ArgumentParser(
+    description='Train the model using supervised data.'
+)
+parser.add_argument(
+    'laughter_files',
+    type=str,
+    help='a text file with file paths to laughter sound examples'
+)
+parser.add_argument(
+    'non_laughter_files',
+    type=str,
+    help='a text file with file paths to non-laughter sound examples'
+)
+parser.add_argument(
+    'output_filepath',
+    type=str,
+    help='the path where the resulting arff file is to be placed'
+)
 
 args = parser.parse_args()
 
-showTestModel(args.laughter_files, args.non_laughter_files, args.output_location)
+showTestModel(args.laughter_files, args.non_laughter_files, args.output_filepath)
