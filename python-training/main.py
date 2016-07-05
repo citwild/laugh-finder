@@ -1,9 +1,7 @@
 __author__ = 'Shalini Ramachandra'
 
-from View import View
-from MatchTimeConvertor import MatchConverter
-from Weka_MatchGenerator_Local import LableGenerator
 from file_feature_extraction import file_feature_extraction
+import argparse
 
 
 def createWekaFile(features, labels, file_name):
@@ -79,13 +77,12 @@ def showTestModel(laughter_file_name, non_laughter_file_name):
 
     # print(labels)
     createWekaFile(feature_array, labels, "wekaFile.arff")
-    my_view.showTestModelScreen()
 
 
-my_view = View(800, 500)
+parser = argparse.ArgumentParser(description='Train the model using supervised data.')
+parser.add_argument('laughter_files', type=str, help='a text file with file paths to laughter sound examples')
+parser.add_argument('non_laughter_files', type=str, help='a text file with file paths to non-laughter sound examples')
 
-my_view.showPrepareScreen(showTestModel)
+args = parser.parse_args()
 
-my_view.start()
-
-
+showTestModel(args.laughter_files, args.non_laughter_files);
