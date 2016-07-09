@@ -15,10 +15,7 @@ A machine learning program for human laughter detection.
 #### Generate .arff File for WEKA
 1. Run **main.py** under the *python-training* folder
 2. In the GUI, click "Browse" next to "File with laughter audio file names"
-3. Select the file containing a series of paths to laughter training files
-4. Click "Browse" next to "File with non-laughter audio file names"
-5. Select the file containing a series of paths to non-laughter training files
-6. Click "Prepare" to generate a **wekaFile.arff** file within the same directory as **main.py**
+3. **TODO: Provide instructions for using command line instruction**
 
 #### Using WEKA
 1. Run WEKA using the following command:
@@ -31,17 +28,10 @@ A machine learning program for human laughter detection.
 7. Press "Start"
 8. After the classification is finished, right-click the output in "Result List" and click "Save Model"
 
-### Testing
-1. Run **main.py** under the *python-testing* folder
-  - Include the following params:
-    - `--phase 0`; for testing algorithm
-    - `--audio /path/to/audio.wav`; the audio file you want to examine
-      - **.wav** files only, not 24 bit depth (limitation of SciPy)
-    - `--arff /path/to/arff/result.arff`; the result **.arff** file from training
 
-### Re-Training
+### Testing and Training
 1. Change file paths in **Constants.java** accordingly, relative to the values of your machine
-2. Compile and run the *WavReader* main class (include the **weka.jar** to your classpath)
+2. Compile and run the *Main* main class (include the **weka.jar** to your classpath)
 3. Run the main Java file
 4. In the GUI, select the audio file containig the laughter segments to be identified
 5. Click the "Get Laughter Segments" button
