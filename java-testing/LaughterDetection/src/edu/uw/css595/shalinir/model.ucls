@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true"
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">
-  <class id="1" language="java" name="edu.uw.css595.shalinir.WavReader" project="LaughterDetection"
+  <class id="1" language="java" name="edu.uw.css595.shalinir.Main" project="LaughterDetection"
     file="/LaughterDetection/src/edu/uw/css595/shalinir/WavReader.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="1682" y="249"/>
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true"
@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>
     </display>
   </class>
-  <class id="2" language="java" name="edu.uw.css595.shalinir.WavReader.PlayButton" project="LaughterDetection"
+  <class id="2" language="java" name="edu.uw.css595.shalinir.Main.PlayButton" project="LaughterDetection"
     file="/LaughterDetection/src/edu/uw/css595/shalinir/WavReader.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="1445" y="187"/>
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true"
@@ -56,7 +56,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>
     </display>
   </class>
-  <class id="7" language="java" name="edu.uw.css595.shalinir.WavReader.GetLaughterSegmentsListener"
+  <class id="7" language="java" name="edu.uw.css595.shalinir.Main.GetLaughterSegmentsListener"
     project="LaughterDetection" file="/LaughterDetection/src/edu/uw/css595/shalinir/WavReader.java" binary="false"
     corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="1973" y="253"/>
@@ -93,7 +93,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>
     </display>
   </class>
-  <class id="11" language="java" name="edu.uw.css595.shalinir.WavReader.RetrainButtonListener"
+  <class id="11" language="java" name="edu.uw.css595.shalinir.Main.RetrainButtonListener"
     project="LaughterDetection" file="/LaughterDetection/src/edu/uw/css595/shalinir/WavReader.java" binary="false"
     corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="1875" y="423"/>

@@ -8,11 +8,18 @@ package edu.uw.css595.shalinir;
 public class Constants {
 
     public static final long WINDOW_SIZE_IN_MS = 800;
-    public static final String TEST_DIR = "/Users/Desktop/Demo/test/";
-    public static final String TEST_ARFF_FILE = TEST_DIR + "test.arff";
+    // location of where all the outputs/inputs can be found
+    public static final String TEST_DIR = "/Users/milesdowe/Documents/workspace/school/lf-output/";
+    // .arff file from training
+    public static final String TEST_ARFF_FILE = TEST_DIR + "wekaFile.arff";
+    // file to write test results
     public static final String TEST_INDEX_FILE = TEST_DIR + "index.txt";
-    public static final String PYTHON_MAIN_SCRIPT_PATH = "/Users/Desktop/laughter_detection/main.py";
-    public static final String TRAIN_ARFF_FILE = "/Users/Desktop/Demo/train/train.arff";
-    public static final String MODEL_FILE = "/Users/Desktop/Demo/model/training.model";
+    // Location of python testing script
+    public static final String PYTHON_MAIN_SCRIPT_PATH = "/Users/milesdowe/Documents/workspace/school/laugh-finder/python-testing/main.py";
+    // .arff file resulting from testing
+    public static final String TRAIN_ARFF_FILE = TEST_DIR + "trainResult.arff";
+    // the model to be read and modified
+//    public static final String MODEL_FILE = TEST_DIR + "laugh.model";
+    public static final String MODEL_FILE = TEST_DIR + "model-from-app-example.model";
 
 }

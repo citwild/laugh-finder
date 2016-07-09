@@ -1,8 +1,6 @@
 package edu.uw.css595.shalinir;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,7 +43,7 @@ public class TestEngine {
     public List<long[]> getLaughters() {
         String indexFileName = Constants.TEST_INDEX_FILE;
         isPresentList = this.getIsPresentList(indexFileName);
-        List<long[]> laughtersInMilliSecs = new ArrayList<long[]>();
+        List<long[]> laughtersInMilliSecs = new ArrayList<>();
 
         try {
             BufferedReader arffReader = new BufferedReader(new FileReader(
@@ -66,9 +64,11 @@ public class TestEngine {
 
             for (int i = 0; i < isLaughterList.length; i++) {
 
+                // TODO: using "baby giggle" sound, get impossible timeframe (i.e., 0:11.200 to 0:10.400)
+                // TODO: false negatives, not recognizing baby giggling (probably unimportant, bad sample)
                 if (isLaughterList[i]) {
                     start = i;
-                    while (isLaughterList[i]) {
+                    while (isLaughterList[i] && i < isLaughterList.length - 1) {
                         i++;
                     }
                     end = i;
@@ -76,16 +76,16 @@ public class TestEngine {
                         end--;
                     }
                     long windowSize = Constants.WINDOW_SIZE_IN_MS;
-                    laughtersInMilliSecs.add(new long[] { start * windowSize,
-                            end * windowSize });
-                    System.out.println(getDisplayTime(start * windowSize)
-                            + " to " + getDisplayTime(end * windowSize));
+                    laughtersInMilliSecs.add(new long[] {
+                            start * windowSize,
+                            end * windowSize
+                    });
+                    System.out.println(getDisplayTime(start * windowSize) + " to " + getDisplayTime(end * windowSize));
                 }
             }
 
             arffReader.close();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -113,7 +113,7 @@ public class TestEngine {
     }
 
     /**
-     * Merges the predications with existing instances.
+     * Merges the predictions with existing instances.
      *
      * @param predictions
      *            - The predictions.
@@ -153,15 +153,10 @@ public class TestEngine {
             indexFileReader = new BufferedReader(new FileReader(indexFileName));
             String line;
             while ((line = indexFileReader.readLine()) != null) {
-                isPresentList.add(line.trim().equalsIgnoreCase("YES") ? true
-                        : false);
+                isPresentList.add(line.trim().equalsIgnoreCase("YES"));
             }
             indexFileReader.close();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -176,12 +171,9 @@ public class TestEngine {
      * @return - Duration as a human readable string.
      */
     private String getDisplayTime(long timeInMilliseconds) {
-        String displayTime = "";
         double seconds = timeInMilliseconds / 1000.0;
         int minute = (int) (seconds / 60);
         double second = seconds % 60;
-        displayTime = minute + ":" + String.format("%.3f", second);
-
-        return displayTime;
+        return  minute + ":" + String.format("%.3f", second);
     }
 }

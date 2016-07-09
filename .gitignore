@@ -9,6 +9,7 @@
 bin
 __pycache__
 *.pyc
+compiled-code
 
 # WEKA files
 *.model

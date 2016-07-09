@@ -37,7 +37,7 @@ import edu.uw.css595.shalinir.player.SwingAudioPlayer;
  *
  * @author Shalini Ramachandra
  */
-public class WavReader extends JFrame {
+public class Main extends JFrame {
 
     private JPanel topPanel;
     private JPanel bottomPanel;
@@ -50,9 +50,9 @@ public class WavReader extends JFrame {
     private static FeedbackLabel[] feedback;
 
     /**
-     * Initializes a new instance of WavReader.
+     * Create the GUI
      */
-    public WavReader() {
+    public Main() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Laughter Detection");
 
@@ -87,9 +87,6 @@ public class WavReader extends JFrame {
     /**
      * The listener that is invoked when Get Laughter Segments button is
      * clicked. Implements the ActionListener.
-     *
-     * @author Shalini Ramachandra
-     *
      */
     public class GetLaughterSegmentsListener implements ActionListener {
         private JFrame frame;
@@ -135,7 +132,7 @@ public class WavReader extends JFrame {
                 // retrieve output from Python script
                 BufferedReader bfr = new BufferedReader(new InputStreamReader(
                         process.getInputStream()));
-                String line = "";
+                String line;
                 while ((line = bfr.readLine()) != null) {
                     // display each output line from Python script
                     System.out.println(line);
@@ -358,8 +355,7 @@ public class WavReader extends JFrame {
                 if (this.isPresentList.get(i)) {
                     instance = this.instances.instance(instanceIndex);
                     if (indexToIsLaughter.containsKey(i)) {
-                        instance.setClassValue(indexToIsLaughter.get(i) ? "YES"
-                                : "NO");
+                        instance.setClassValue(indexToIsLaughter.get(i) ? "YES" : "NO");
                         if (indexToIsLaughter.get(i)) {
                             retrainInstances.add(instance);
                         } else {
@@ -413,7 +409,7 @@ public class WavReader extends JFrame {
     public static void main(String args[]) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                WavReader app = new WavReader();
+                Main app = new Main();
                 app.setVisible(true);
             }
         });
