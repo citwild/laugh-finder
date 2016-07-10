@@ -55,9 +55,9 @@ public class Utils {
             Path source = Paths.get(fileName);
             Path target = Paths.get(newFileName);
             try {
+                // TODO: when saving revised model, exception occurs here (no such file)
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

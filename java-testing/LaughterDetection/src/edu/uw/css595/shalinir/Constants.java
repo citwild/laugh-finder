@@ -17,9 +17,8 @@ public class Constants {
     // Location of python testing script
     public static final String PYTHON_MAIN_SCRIPT_PATH = "/Users/milesdowe/Documents/workspace/school/laugh-finder/python-testing/main.py";
     // .arff file resulting from testing
-    public static final String TRAIN_ARFF_FILE = TEST_DIR + "trainResult.arff";
+    public static final String TRAIN_ARFF_FILE = TEST_DIR + "wekaFile.arff";
     // the model to be read and modified
-//    public static final String MODEL_FILE = TEST_DIR + "laugh.model";
-    public static final String MODEL_FILE = TEST_DIR + "model-from-app-example.model";
+    public static final String MODEL_FILE = TEST_DIR + "laugh.model";
 
 }
