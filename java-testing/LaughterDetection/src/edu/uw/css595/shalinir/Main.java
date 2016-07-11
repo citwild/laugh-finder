@@ -372,6 +372,7 @@ public class Main extends JFrame {
 
             // Set noIncrement appropriately if balancing is selected.
             if (this.balanceCheckbox.isSelected()) {
+                // FIXME: divide by zero error if processing no laughter instances
                 noIncrement = noInstances.numInstances() / yesCount;
 
                 // Making sure noIncrement is not zero when number of no

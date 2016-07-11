@@ -46,7 +46,6 @@ public class Utils {
             try {
                 throw new Exception("File name must have one and only one dot");
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
