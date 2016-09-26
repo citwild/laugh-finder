@@ -3,7 +3,15 @@
 # Copyright 2014 All Rights Reserved
 # Author: Robert Bezirganyan (robbez@uw.edu)
 
-import queue
+import sys
+
+# compatability check taken from http://stackoverflow.com/a/29688081/3791964
+# AWS uses Python2 by default, which this can cause backwards compatibility issues
+is_py2 = sys.version[0] == '2'
+if is_py2:
+    import Queue as queue
+else:
+    import queue as queue
 
 """
 Class that converts the match file given into queues that can be used.

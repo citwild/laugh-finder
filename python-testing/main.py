@@ -1,15 +1,18 @@
-__author__ = 'Shalini Ramachandra'
-
-from View import View
+import argparse
 from MatchTimeConvertor import MatchConverter
 from Weka_MatchGenerator_Local import LableGenerator
 from file_feature_extraction import file_feature_extraction
-import argparse
+from get_s3_object import get_wav_file
+
+__author__ = 'Shalini Ramachandra'
+
 
 """
 Creates a weka file given the features and labels.
 """
-def createWekaFile(features, labels, filePath, isTest, isFilterApplied):
+
+
+def create_weka_file(features, labels, filePath, isTest, isFilterApplied):
     fileName = filePath + "/test.arff"
     originalIndexFileName = filePath + "/index.txt"
 
@@ -94,27 +97,34 @@ def generateWekaHeader():
 """
 Main method that extracts the features and produces the ARFF file.
 """
-def showTestModel(audioFile, arffFilePath, matchFile=None, windowSize=800, stepSize=100, isTest=True, amplitudeFilter=True, diffFilter=False):
+
+
+def showTestModel(bucket, key, arffFilePath, matchFile=None, windowSize=800, stepSize=100, isTest=True, amplitudeFilter=True, diffFilter=False):
     params = 'windowSize: %s, stepSize: %s, isTest: %s, applyFilter: %s, diffFilter: %s' % (windowSize, stepSize, isTest, amplitudeFilter, diffFilter)
     print(params)
 
-    windowSizeInSec = int(windowSize) / 1000.0
-    stepSizeInSec = (int(stepSize) / 100.0) * windowSizeInSec
-    print("Window Size (in sec): ", windowSizeInSec)
-    print("Step Size (in sec): ", stepSizeInSec)
+    # get audio file from S3
+    audio_file = get_wav_file(bucket, key)
 
-    featureArray = file_feature_extraction(audioFile, windowSizeInSec, stepSizeInSec, amplitudeFilter, diffFilter)
+    window_size_in_sec = int(windowSize) / 1000.0
+    step_size_in_sec = (int(stepSize) / 100.0) * window_size_in_sec
+    print("Window Size (in sec): ", window_size_in_sec)
+    print("Step Size (in sec): ", step_size_in_sec)
+
+    # get features from WAV file
+    feature_array = file_feature_extraction(audio_file, window_size_in_sec, step_size_in_sec, amplitudeFilter, diffFilter)
+
     if matchFile != None:
         my_matchConverter = MatchConverter(matchFile, 0)
         timesList = my_matchConverter.convert()
 
-        my_labelGenerator = LableGenerator(timesList, len(featureArray), int(windowSize), isTest)
+        my_labelGenerator = LableGenerator(timesList, len(feature_array), int(windowSize), isTest)
         labels = my_labelGenerator.generate()
     else:
-        labels = ["NO"] * len(featureArray)
+        labels = ["NO"] * len(feature_array)
 
     isFilterApplied = amplitudeFilter or diffFilter
-    createWekaFile(featureArray, labels, arffFilePath, isTest, isFilterApplied)
+    create_weka_file(feature_array, labels, arffFilePath, isTest, isFilterApplied)
 
 """
 my_view.showTestModelScreen()
@@ -125,14 +135,14 @@ my_view.showPrepareScreen(showTestModel)
 
 my_view.start()
 """
-
 parser = argparse.ArgumentParser(description='Arguments to generate ARFF file for train/test.')
 parser.add_argument('--phase', dest='phase', type=int, help='test = 0 train = 1', required=True)
-parser.add_argument('--audio', dest='audio', help="Absolute path to the audio to the file.", required=True)
+parser.add_argument('--bucket', dest='bucket', help="The bucket to search for in S3.", required=True)
+parser.add_argument('--key', dest='key', help="The key to search for within the bucket.", required=True)
 parser.add_argument('--arff', dest='arff', help="Absolute path to the output ARFF to be generated.", required=True)
 
 args = parser.parse_args()
 
-showTestModel(args.audio, args.arff)
+showTestModel(args.bucket, args.key, args.arff)
 
 
