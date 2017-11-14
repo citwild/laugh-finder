@@ -84,7 +84,7 @@ def file_feature_extraction(file, win=0.032, step=0.016, amplitudeFilter=False, 
         frameFFT = getDFT.getDFT(frame, fs)
 
         X = np.abs(np.fft.fft(frame))
-        X = X[0:nFFT]                                    # normalize fft
+        X = X[0:int(nFFT)]                                    # normalize fft
         X = X / len(X)
 
         if i == 0:

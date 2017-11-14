@@ -8,8 +8,11 @@
 # Compiled files
 bin
 __pycache__
+*.pyc
 
 # WEKA files
 *.model
 *.arff
 
+# Vi files
+*.swp

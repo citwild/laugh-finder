@@ -2,7 +2,7 @@ import argparse
 from MatchTimeConvertor import MatchConverter
 from Weka_MatchGenerator_Local import LableGenerator
 from file_feature_extraction import file_feature_extraction
-from get_s3_object import get_wav_file
+from get_azure_blob import get_wav_file
 
 __author__ = 'Shalini Ramachandra'
 
@@ -103,7 +103,7 @@ def showTestModel(bucket, key, arffFilePath, matchFile=None, windowSize=800, ste
     params = 'windowSize: %s, stepSize: %s, isTest: %s, applyFilter: %s, diffFilter: %s' % (windowSize, stepSize, isTest, amplitudeFilter, diffFilter)
     print(params)
 
-    # get audio file from S3
+    # get audio file from Azure Blob
     audio_file = get_wav_file(bucket, key)
 
     window_size_in_sec = int(windowSize) / 1000.0

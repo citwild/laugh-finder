@@ -28,7 +28,7 @@ def getDFT(signal, Fs, PLOT=None):
     FFT = abs(fft.fft(signal)) / N
 
     if PLOT == None:    # return the first half of the spectrum:
-        FFT = FFT[0 : ceil(N/2)]
+        FFT = FFT[0 : int(ceil(N/2))]
         Freq = (Fs/2) * arange(1,ceil(N/2)+2) / (ceil(N/2)+1)   # define the frequency axis
     else:
       # ... or return the whole spectrum
