@@ -63,10 +63,12 @@ def showTestModel(laughter_file_name, non_laughter_file_name):
     print(laughter_file_name)
     print(non_laughter_file_name)
 
-    laughter_file = open(laughter_file_name, 'r')
+    laughter_file     = open(laughter_file_name, 'r')
     non_laughter_file = open(non_laughter_file_name, 'r')
-    labels = []
+
+    labels        = []
     feature_array = []
+
     for line in laughter_file:
         line = line.strip("\n")
         feature_array.append(file_feature_extraction(line))
@@ -77,7 +79,6 @@ def showTestModel(laughter_file_name, non_laughter_file_name):
         feature_array.append(file_feature_extraction(line))
         labels.append('NO')
 
-    # print(labels)
     createWekaFile(feature_array, labels, "wekaFile.arff")
     my_view.showTestModelScreen()
 

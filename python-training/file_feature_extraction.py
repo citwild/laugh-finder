@@ -33,8 +33,6 @@ def file_feature_extraction(audioFile):
     # MFCCs = 13 + Energy = 1 + ZeroCrossingRate = 1 + EnergyEntropy = 1 + Spectral Centroid and Spread = 2 + Spectral Entropy = 1 + Spectral Rolloff = 1
 
     numbOfFeatures = 20
-    # print numOfFrames, numbOfFeatures
-    # import pdb; pdb.set_trace()
     Features = numpy.zeros(numbOfFeatures)
 
     # Frequency-domain audio features
@@ -43,18 +41,18 @@ def file_feature_extraction(audioFile):
     Ham = numpy.hamming(windowLength)
     mfccParams = feature_mfccs_init.feature_mfccs_init(windowLength, fs)
 
-    Win = numpy.int(windowLength)
+    Win  = numpy.int(windowLength)
     nFFT = Win / 2
 
     curPos = 1
 
     # get current frame:\
-    frame = signal
+    frame     = signal
     frameprev = frame.copy()
 
     ampl_val = numpy.max(frame)
 
-    frame = frame * Ham
+    frame    = frame * Ham
     frameFFT = getDFT.getDFT(frame, fs)
 
     X = numpy.abs(numpy.fft.fft(frame))
@@ -69,6 +67,7 @@ def file_feature_extraction(audioFile):
         Features[0:13] = MFCCs
     else:
         Features[:] = numpy.zeros(numbOfFeatures, 1)
+
     Features[13] = stEnergy(frame)
     Features[14] = stZCR(frame)
     Features[15] = stEnergyEntropy(frame)
